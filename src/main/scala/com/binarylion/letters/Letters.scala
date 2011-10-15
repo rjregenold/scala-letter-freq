@@ -1,8 +1,7 @@
 package com.binarylion
 package letters
 
-import scala.actors.Future
-import scala.actors.Futures._
+import scala.actors.Futures.future
 import scala.io.Source
 
 object Letters {
@@ -20,8 +19,8 @@ object Letters {
   def main(args:Array[String]):Unit = {
     val fs = (0 to 3) map { (idx) =>
       future {
-        val h = Source.fromFile("src/main/resources/english." + idx)
-        foldLetterMaps(h.getLines.filterNot(_ contains '\'').map(makeLetterMap(_)))
+        val file = Source.fromFile("src/main/resources/english." + idx)
+        foldLetterMaps(file.getLines.filterNot(_ contains '\'').map(makeLetterMap(_)))
       }
     }
 
