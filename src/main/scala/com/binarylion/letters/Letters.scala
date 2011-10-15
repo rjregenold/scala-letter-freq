@@ -5,13 +5,13 @@ import scala.actors.Futures.future
 import scala.io.Source
 
 object Letters {
-  def emptyList = Map[Char, Int]().withDefaultValue(0)
+  def emptyMap = Map[Char, Int]().withDefaultValue(0)
 
-  def makeLetterMap(word:String) = (emptyList /: word.toLowerCase) {
+  def makeLetterMap(word:String) = (emptyMap /: word.toLowerCase) {
     case (acc, letter) => acc + (letter -> (acc(letter) + 1))
   }
 
-  def foldLetterMaps(letterMaps:TraversableOnce[Map[Char, Int]]) = (emptyList /: letterMaps) {
+  def foldLetterMaps(letterMaps:TraversableOnce[Map[Char, Int]]) = (emptyMap /: letterMaps) {
     case (acc, letterMap) =>
       acc ++ letterMap.map{case (letter, count) => (letter -> (acc(letter) + count))}
   }
