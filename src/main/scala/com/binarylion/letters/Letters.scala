@@ -29,7 +29,7 @@ object Letters {
     println("Total letters: " + totalLetters)
     result.keys.toList.sorted foreach { (letter) => 
       val freq = (result(letter).toDouble / totalLetters.toDouble) * 100
-      println("%s: \t%d\t\t%.2f%%" format (letter, result(letter), freq))
+      println("%s:\t%d\t\t%.2f%%" format (letter, result(letter), freq))
     }
   }
 }
